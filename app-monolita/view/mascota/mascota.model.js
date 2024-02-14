@@ -19,10 +19,10 @@ class ClaseMascota {
             <td>${mascota.sexo}</td>
             <td>${mascota.tipo}</td>
             <td>${mascota.raza}</td>
-            <td><button class='btn btn-success' onclick='uno(${
+            <td><button class='btn btn-outline-info' onclick='uno(${
               mascota.id
             })'>Editar</button>
-            <button class='btn btn-danger'>Eliminar</button> </td>
+            <button class='btn btn-outline-danger'>Eliminar</button> </td>
             </tr>`;
         });
         console.log(html);
