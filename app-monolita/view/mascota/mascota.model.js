@@ -18,6 +18,7 @@ class ClaseMascota {
             <td>${mascota.color}</td>
             <td>${mascota.sexo}</td>
             <td>${mascota.tipo}</td>
+            <td>${mascota.raza}</td>
             <td><button class='btn btn-success' onclick='uno(${
               mascota.id
             })'>Editar</button>

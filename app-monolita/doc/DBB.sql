@@ -50,16 +50,21 @@ CREATE TABLE `mascotas` (
   `nombre` text NOT NULL,
   `color` text NOT NULL,
   `sexo` text NOT NULL,
-  `tipo_id` int(11) NOT NULL
+  `tipo_id` int(11) NOT NULL,
+  `raza_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Llave foranea relacion 1 a muchos entre mascotas y tipos
 ALTER TABLE `mascotas`
-  ADD CONSTRAINT `fk_mascotas_tipo` FOREIGN KEY (`tipo_id`) REFERENCES `tipos` (`id`);
+  ADD CONSTRAINT `fk_mascotas_tipos` FOREIGN KEY (`tipo_id`) REFERENCES `tipos` (`id`);
+
+ALTER TABLE `mascotas`
+  ADD CONSTRAINT `fk_mascotas_razas` FOREIGN KEY (`raza_id`) REFERENCES `razas` (`id`);
 
 -- Inserciones de prueba
 INSERT INTO `tipos` (`detalle`) VALUES ('Perro'), ('Gato'), ('Ave'), ('Roedor');
-INSERT INTO `mascotas` (`nombre`, `color`, `sexo`, `tipo_id`) VALUES ('Pelusa', 'Blanco', 'Hembra', 1), ('Luna', 'Negro', 'Macho',3);
+INSERT INTO `razas` (`detalle`) VALUES ('Labrador'), ('Pastor Aleman'), ('Persa'), ('Bombai');
+INSERT INTO `mascotas` (`nombre`, `color`, `sexo`, `tipo_id`, `raza_id`) VALUES ('Pelusa', 'Blanco', 'Hembra', 1, 1), ('Luna', 'Negro', 'Hembra', 2, 4), ('Pepe', 'Azul', 'Macho', 3, 3);
 
 -- Consulta para traer todos los datos
 select m.nombre, m.color, m.sexo, t.detalle from mascotas m join tipos t on t.id = m.tipo_id;
