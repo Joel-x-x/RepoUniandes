@@ -67,4 +67,4 @@ INSERT INTO `razas` (`detalle`) VALUES ('Labrador'), ('Pastor Aleman'), ('Persa'
 INSERT INTO `mascotas` (`nombre`, `color`, `sexo`, `tipo_id`, `raza_id`) VALUES ('Pelusa', 'Blanco', 'Hembra', 1, 1), ('Luna', 'Negro', 'Hembra', 2, 4), ('Pepe', 'Azul', 'Macho', 3, 3);
 
 -- Consulta para traer todos los datos
-select m.nombre, m.color, m.sexo, t.detalle from mascotas m join tipos t on t.id = m.tipo_id;
+select m.nombre, m.color, m.sexo, t.detalle as tipo, r.detalle as raza from mascotas m join tipos t on t.id = m.tipo_id join razas r on r.id = m.raza_id;
