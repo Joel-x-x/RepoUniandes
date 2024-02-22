@@ -36,40 +36,42 @@ var CargaLista = () => {
   );
 };
 
-var GuardarEditar = (e) => {
+var GuardarEditar = async (e) => {
   e.preventDefault();
   var DatosFormularioUsuario = new FormData($("#form_usuarios")[0]);
-  DatosFormularioUsuario.append("Face", obtenerImagen())
-  var accion = "../../controllers/usuario.controllers.php?op=insertar";
+  obtenerImagen().then((imagen) => {
+    DatosFormularioUsuario.append("Face", imagen)
 
-  for (var pair of DatosFormularioUsuario.entries()) {
-    console.log(pair[0] + ", " + pair[1]);
-  }
+    var accion = "../../controllers/usuario.controllers.php?op=insertar";
 
-  /**
-   * if(SucursalId >0){editar   accion='ruta para editar'}
-   * else
-   * { accion = ruta para insertar}
-   */
-  $.ajax({
-    url: accion,
-    type: "post",
-    data: DatosFormularioUsuario,
-    processData: false,
-    contentType: false,
-    cache: false,
-    success: (respuesta) => {
-      console.log(respuesta);
-      respuesta = JSON.parse(respuesta);
-      if (respuesta == "ok") {
-        alert("Se guardo con éxito");
-        CargaLista();
-        LimpiarCajas();
-      } else {
-        alert("no tu pendejada");
-      }
-    },
-  });
+    for (var pair of DatosFormularioUsuario.entries()) {
+      console.log(pair[0] + ", " + pair[1]);
+    }
+    /**
+     * if(SucursalId >0){editar   accion='ruta para editar'}
+     * else
+     * { accion = ruta para insertar}
+     */
+    $.ajax({
+      url: accion,
+      type: "post",
+      data: DatosFormularioUsuario,
+      processData: false,
+      contentType: false,
+      cache: false,
+      success: (respuesta) => {
+        console.log(respuesta);
+        respuesta = JSON.parse(respuesta);
+        if (respuesta == "ok") {
+          alert("Se guardo con éxito");
+          CargaLista();
+          LimpiarCajas();
+        } else {
+          alert("no tu pendejada");
+        }
+      },
+    });
+    })
 };
 
 var uno = () => {};

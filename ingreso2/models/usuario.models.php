@@ -34,6 +34,15 @@ class Usuarios
         return $datos;
         $con->close();
     }
+    public function obtenerImagenCedula($Cedula) {
+        $con = new ClaseConectar();
+        $con = $con->ProcedimientoConectar();
+        $cadena = "SELECT u.Face FROM usuarios u WHERE Cedula = '$Cedula'";
+        header('Content-type: image/jpeg');
+        $datos = mysqli_query($con, $cadena);
+        return $datos;
+        $con->close();
+    }
     /*TODO: Procedimiento para insertar */
     public function Insertar($Nombres, $Apellidos, $Correo, $Contrasenia, $SucursalId, $idRoles, $Cedula, $Face)
     {

@@ -51,8 +51,8 @@
   <form id="frm" class="mb-3" method="POST">
 
     <video width="300" height="300" autoplay style="position: absolute; top:0px"></video>
-    <button onclick="almacenarRostro()" style="position: absolute; right: 0;">Detectar</button>
-    <button onclick="compararRostros()" style="position: absolute; right: 150px;">Autenticar</button>
+    <!-- <button onclick="almacenarRostro()" style="position: absolute; right: 0;">Detectar</button> -->
+    <!-- <button onclick="compararRostros()" style="position: absolute; right: 150px;">Autenticar</button> -->
     <div class="container-xxl">
       <div class="authentication-wrapper authentication-basic container-p-y">
         <div class="authentication-inner">
@@ -71,11 +71,11 @@
               <!-- /Logo -->
 
               <div class="mb-3">
-                <label for="username" class="form-label">Cédula</label>
+                <label for="cedula" class="form-label">Cédula</label>
                 <input type="text" class="form-control" id="cedula" name="cedula" placeholder="Ingrese su número de cédula" autofocus required />
               </div>
               <div class="mb-3">
-                <label for="email" class="form-label">Tipo de Acceso</label>
+                <label for="tipo" class="form-label">Tipo de Acceso</label>
                 <select name="tipo" id="tipo" class="form-control"></select>
               </div>
               <button class="btn btn-primary d-grid w-100" type="submit">Aceptar</button>

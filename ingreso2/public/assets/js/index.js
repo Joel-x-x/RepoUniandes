@@ -1,81 +1,22 @@
 function init() {
   $("#frm").on("submit", (e) => {
-    RegistroAsistencia(e);
+    e.preventDefault();
+    RegistroAsistencia()
   });
 }
 
-$().ready(() => {
-  tiposacceso();
-});
-
-var RegistroAsistencia = (e) => {
-  e.preventDefault();
-  var formulario = new FormData($("#frm")[0]);
-  alert("aqui");
-  $.ajax({
-    url: "controllers/usuario.controllers.php?op=unoconCedula",
-    type: "post",
-    data: formulario,
-    processData: false,
-    contentType: false,
-    cache: false,
-    success: (respuesta) => {
-      console.log(respuesta);
-    },
-  }).done((usuarioId) => {
-    usuarioId = JSON.parse(usuarioId);
-    formulario.append("usuariosId", usuarioId.idUsuarios);
-    $.ajax({
-      url: "controllers/accesos.controllers.php?op=insertar",
-      type: "post",
-      data: formulario,
-      processData: false,
-      contentType: false,
-      cache: false,
-      success: (respuesta) => {
-        console.log(respuesta);
-        respuesta = JSON.parse(respuesta);
-        if (respuesta == "ok") {
-          //Swal.fire(Titulo, texto, tipo de alerta)
-          Swal.fire("Registro de Asistencia", "Se guardo con éxito", "success");
-        } else {
-          Swal.fire(
-            "Registro de Asistencia",
-            "Hubo un error al guardar",
-            "danger"
-          );
-        }
-      },
-    });
-  });
-};
-
-var tiposacceso = () => {
-  return new Promise((resolve, reject) => {
-    var html = `<option value="0">Seleccione una opción</option>`;
-    $.post("controllers/tipoacceso.controllers.php?op=todos", async (lista) => {
-      lista = JSON.parse(lista);
-      $.each(lista, (index, tipo) => {
-        html += `<option value="${tipo.IdTipoAcceso}">${tipo.Detalle}</option>`;
-      });
-      await $("#tipo").html(html);
-      resolve();
-    }).fail((error) => {
-      reject(error);
-    });
-  });
-};
 init();
 
-// Deteccion de rostro utilizando webcam
-const video = document.querySelector("video");
+// Elementos html
+const video = document.querySelector("video"); 
 let imagenAlmacenada;
 
-document.addEventListener("DOMContentLoaded", (e) => {
+// Deteccion de rostro utilizando webcam
+async function autenticarRostro(usuario) {
+
+  // Cargar modulos face api
   let stream;
-
   const MODEL_URL = "./public/libs/face-api/models"
-
   Promise.all([
     faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL),
     faceapi.nets.faceLandmark68Net.loadFromUri(MODEL_URL),
@@ -85,7 +26,8 @@ document.addEventListener("DOMContentLoaded", (e) => {
     faceapi.nets.ssdMobilenetv1.loadFromUri(MODEL_URL)
   ]).then(startVideo);
 
-  function startVideo() {
+  // Inciar camara
+  async function startVideo()  {
     navigator.getUserMedia(
       { video: {} },
       (stream) => {
@@ -95,7 +37,28 @@ document.addEventListener("DOMContentLoaded", (e) => {
       () => alert("Error al acceder a la camara web")
     );
   }
-});
+
+  // Traer imagen con cedula
+  usuario = JSON.parse(usuario);
+
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url: "controllers/usuario.controllers.php?op=obtenerImagenCedula",
+      type: "post",
+      data: { cedula: usuario.Cedula },
+      success: async (respuesta) => {
+        respuesta = JSON.parse(respuesta);
+        imagenAlmacenada = respuesta.Face;
+        const resultado = await compararRostros();
+        resolve(resultado);
+      },
+      error: (error) => {
+        reject(error);
+      }
+    });
+  });
+
+}
 
 async function capturarRostro() {
   // Crear un canvas temporal para capturar el rostro
@@ -115,15 +78,17 @@ async function capturarRostro() {
   return imagenBase64 
 }
 
-async function almacenarRostro() {
-  imagenAlmacenada = await capturarRostro();
-  console.log("Imagen detectada")
-}
+// async function almacenarRostro() {
+//   imagenAlmacenada = await capturarRostro();
+//   console.log("Imagen detectada")
+// }
 
 // Función para iniciar la autenticación facial
 async function compararRostros() {
   nuevaImagenBase64 = await capturarRostro();
 
+  console.log(nuevaImagenBase64)
+  console.log(imagenAlmacenada)
   // Convertir las imágenes base64 en tensores
   const tensor1 = await faceapi.fetchImage(imagenAlmacenada);
   const tensor2 = await faceapi.fetchImage(nuevaImagenBase64);
@@ -145,11 +110,88 @@ async function compararRostros() {
   // Retornar el mensaje indicando si los rostros son iguales o no
   console.log(mejorMatch);
   if (mejorMatch._label === "unknown") {
-    alert("Los rostros son diferentes.")
+    console.log("Los rostros son diferentes.")
+    return false
   } else {
-    alert("Los rostros son iguales.")
+    console.log("Los rostros son iguales.")
+    return true
   }
 }
+
+
+
+// Cargar listas tipos de acceso
+$().ready(() => {
+  tiposacceso();
+});
+
+var RegistroAsistencia = () => {
+  var formulario = new FormData($("#frm")[0]);
+  // alert("aqui");
+  $.ajax({
+    url: "controllers/usuario.controllers.php?op=unoconCedula",
+    type: "post",
+    data: formulario,
+    processData: false,
+    contentType: false,
+    cache: false,
+    success: (respuesta) => {
+      // console.log(respuesta);
+    },
+  }).done(async (usuario) => {
+    // Autenticar rostro si no coincide no continua con el registro de acceso
+    autenticarRostro(usuario).then( () => {
+      usuario = JSON.parse(usuario);
+
+      formulario.append("idUsuarios", usuario.idUsuarios);
+      // console.log(formulario.get("idUsuarios") + " " + formulario.get("tipo"))
+      $.ajax({
+        url: "controllers/accesos.controllers.php?op=insertar",
+        type: "post",
+        data: formulario,
+        processData: false,
+        contentType: false,
+        cache: false,
+        success: (respuesta) => {
+          respuesta = JSON.parse(respuesta);
+          if (respuesta == "ok") {
+            //Swal.fire(Titulo, texto, tipo de alerta)
+            Swal.fire("Registro de Asistencia", "Se guardo con éxito", "success");
+          } else {
+            Swal.fire(
+              "Registro de Asistencia",
+              "Hubo un error al guardar",
+              "danger"
+            );
+          }
+        },
+      });
+    })
+    .catch( () => {
+      Swal.fire(
+        "Sin coincidencias faciales",
+        "Vuelve a intentarlo",
+        "danger"
+      );
+    })
+  });
+};
+
+var tiposacceso = () => {
+  return new Promise((resolve, reject) => {
+    var html = `<option value="0">Seleccione una opción</option>`;
+    $.post("controllers/tipoacceso.controllers.php?op=todos", async (lista) => {
+      lista = JSON.parse(lista);
+      $.each(lista, (index, tipo) => {
+        html += `<option value="${tipo.IdTipoAcceso}">${tipo.Detalle}</option>`;
+      });
+      await $("#tipo").html(html);
+      resolve();
+    }).fail((error) => {
+      reject(error);
+    });
+  });
+};
 
 // Detectar sonriza
 video.addEventListener("play", () => {
@@ -184,7 +226,7 @@ video.addEventListener("play", () => {
               detection.detection.box.bottomLeft
           ).draw(canvas)
       });
-  }, 10)
+  }, 50)
 })
 
 

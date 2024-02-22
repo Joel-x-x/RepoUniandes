@@ -25,11 +25,11 @@ class Accesos
         $con->close();
     }
     /*TODO: Procedimiento para insertar */
-    public function Insertar($usuariosId, $IdTipoAcceso)
+    public function Insertar($idUsuarios, $IdTipoAcceso)
     {
         $con = new ClaseConectar();
         $con = $con->ProcedimientoConectar();
-        $cadena = "INSERT into Accesos(Usuarios_idUsuarios,IdTipoAcceso) values ( $usuariosId, $IdTipoAcceso)";
+        $cadena = "INSERT into Accesos(Usuarios_idUsuarios,IdTipoAcceso) values ( $idUsuarios, $IdTipoAcceso)";
 
         if (mysqli_query($con, $cadena)) {
             return "ok";

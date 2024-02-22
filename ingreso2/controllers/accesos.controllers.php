@@ -35,10 +35,10 @@ switch ($_GET["op"]) {
         break;
         /*TODO: Procedimiento para insertar */
     case 'insertar':
-        $usuariosId = $_POST["usuariosId"];
-        $tipo = $_POST["tipo"];
+        $idUsuarios = $_POST["idUsuarios"];
+        $IdTipoAcceso = $_POST["tipo"];
         $datos = array();
-        $datos = $Accesos->Insertar($usuariosId, $tipo);
+        $datos = $Accesos->Insertar($idUsuarios, $IdTipoAcceso);
         echo json_encode($datos);
         break;
         /*TODO: Procedimiento para actualizar */
