@@ -38,7 +38,7 @@ class Usuarios
         $con = new ClaseConectar();
         $con = $con->ProcedimientoConectar();
         $cadena = "SELECT u.Face FROM usuarios u WHERE Cedula = '$Cedula'";
-        header('Content-type: image/jpeg');
+        // header('Content-type: image/jpeg');
         $datos = mysqli_query($con, $cadena);
         return $datos;
         $con->close();

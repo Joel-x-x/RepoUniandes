@@ -10,34 +10,10 @@ init();
 // Elementos html
 const video = document.querySelector("video"); 
 let imagenAlmacenada;
+let nuevaImagenBase64;
 
 // Deteccion de rostro utilizando webcam
 async function autenticarRostro(usuario) {
-
-  // Cargar modulos face api
-  let stream;
-  const MODEL_URL = "./public/libs/face-api/models"
-  Promise.all([
-    faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL),
-    faceapi.nets.faceLandmark68Net.loadFromUri(MODEL_URL),
-    faceapi.nets.faceRecognitionNet.loadFromUri(MODEL_URL),
-    faceapi.nets.faceExpressionNet.loadFromUri(MODEL_URL),
-    faceapi.nets.ageGenderNet.loadFromUri(MODEL_URL),
-    faceapi.nets.ssdMobilenetv1.loadFromUri(MODEL_URL)
-  ]).then(startVideo);
-
-  // Inciar camara
-  async function startVideo()  {
-    navigator.getUserMedia(
-      { video: {} },
-      (stream) => {
-        video.srcObject = stream;
-        stream = stream;
-      },
-      () => alert("Error al acceder a la camara web")
-    );
-  }
-
   // Traer imagen con cedula
   usuario = JSON.parse(usuario);
 
@@ -85,10 +61,8 @@ async function capturarRostro() {
 
 // Función para iniciar la autenticación facial
 async function compararRostros() {
-  nuevaImagenBase64 = await capturarRostro();
-
-  console.log(nuevaImagenBase64)
   console.log(imagenAlmacenada)
+  console.log(nuevaImagenBase64)
   // Convertir las imágenes base64 en tensores
   const tensor1 = await faceapi.fetchImage(imagenAlmacenada);
   const tensor2 = await faceapi.fetchImage(nuevaImagenBase64);
@@ -118,11 +92,32 @@ async function compararRostros() {
   }
 }
 
-
-
 // Cargar listas tipos de acceso
 $().ready(() => {
   tiposacceso();
+  // Cargar modulos face api
+  let stream;
+  const MODEL_URL = "./public/libs/face-api/models"
+  Promise.all([
+    faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL),
+    faceapi.nets.faceLandmark68Net.loadFromUri(MODEL_URL),
+    faceapi.nets.faceRecognitionNet.loadFromUri(MODEL_URL),
+    faceapi.nets.faceExpressionNet.loadFromUri(MODEL_URL),
+    faceapi.nets.ageGenderNet.loadFromUri(MODEL_URL),
+    faceapi.nets.ssdMobilenetv1.loadFromUri(MODEL_URL)
+  ]).then(startVideo);
+
+  // Inciar camara
+  async function startVideo()  {
+    navigator.getUserMedia(
+      { video: {} },
+      (stream) => {
+        video.srcObject = stream;
+        stream = stream;
+      },
+      () => alert("Error al acceder a la camara web")
+    );
+  }
 });
 
 var RegistroAsistencia = () => {
@@ -194,7 +189,10 @@ var tiposacceso = () => {
 };
 
 // Detectar sonriza
-video.addEventListener("play", () => {
+video.addEventListener("play", async () => {
+  nuevaImagenBase64 = await capturarRostro();
+  console.log("Rostro capturado")
+
   const canvas = faceapi.createCanvasFromMedia(video)
   document.body.append(canvas)
 
