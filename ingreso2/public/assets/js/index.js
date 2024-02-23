@@ -26,6 +26,7 @@ async function autenticarRostro(usuario) {
         respuesta = JSON.parse(respuesta);
         imagenAlmacenada = respuesta.Face;
         const resultado = await compararRostros();
+        console.log(resultado)
         resolve(resultado);
       },
       error: (error) => {
@@ -83,7 +84,7 @@ async function compararRostros() {
 
   // Retornar el mensaje indicando si los rostros son iguales o no
   console.log(mejorMatch);
-  if (mejorMatch._label === "unknown") {
+  if (mejorMatch._label == "unknown") {
     console.log("Los rostros son diferentes.")
     return false
   } else {
@@ -190,8 +191,10 @@ var tiposacceso = () => {
 
 // Detectar sonriza
 video.addEventListener("play", async () => {
-  nuevaImagenBase64 = await capturarRostro();
-  console.log("Rostro capturado")
+  setTimeout(async () => {
+    nuevaImagenBase64 = await capturarRostro();
+    console.log("Rostro capturado")
+  }, 6000);
 
   const canvas = faceapi.createCanvasFromMedia(video)
   document.body.append(canvas)
