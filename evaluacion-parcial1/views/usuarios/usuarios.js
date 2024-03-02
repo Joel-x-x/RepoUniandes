@@ -21,7 +21,7 @@ function init() {
               <td>${usuario.email}</td>
               <td>${usuario.rol}</td>
   <td>
-  <button class='btn btn-primary' click='uno(${
+  <button class='btn btn-dark' click='uno(${
             usuario.id
           })'>Editar</button>
   <button class='btn btn-warning' click='eliminar(${

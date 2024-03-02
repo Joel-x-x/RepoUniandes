@@ -35,10 +35,10 @@ function init() {
               <td>${blog.visitas}</td>
               <td>${blog.fecha_creacion}</td>
               <td>
-              <button class='btn btn-primary' data-bs-toggle="modal" data-bs-target="#ModalAutores" onclick="CargaAutores(${blog.id})">Agregar</button>
+              <button class='btn btn-dark' data-bs-toggle="modal" data-bs-target="#ModalAutores" onclick="CargaAutores(${blog.id})">Agregar</button>
               <button class='btn btn-warning' data-bs-toggle="modal" data-bs-target="#ModalAutoresBlogs" onclick='CargaAutoresBlog(${blog.id})'>Listar</button>
               <td>
-              <button class='btn btn-primary' click='uno(${
+              <button class='btn btn-dark' click='uno(${
                         blog.id
                       })'>Editar</button>
               <button class='btn btn-warning' click='eliminar(${

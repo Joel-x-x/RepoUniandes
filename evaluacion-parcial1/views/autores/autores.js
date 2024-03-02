@@ -25,7 +25,7 @@ function init() {
               <td>${usuario.nacimiento}</td>
               <td>${usuario.genero == 1 ? "Hombre": "Mujer"}</td>
   <td>
-  <button class='btn btn-primary' click='uno(${
+  <button class='btn btn-dark' click='uno(${
             usuario.id
           })'>Editar</button>
   <button class='btn btn-warning' click='eliminar(${
