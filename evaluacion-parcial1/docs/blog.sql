@@ -53,7 +53,7 @@ create table blogs (
   id int(11) not null primary key auto_increment,
   nombre varchar(255) not null,
   tema text not null,
-  visitas int(11) not null,
+  visitas int(11) default 0,
   fecha_creacion date not null
 );
 
@@ -79,8 +79,8 @@ values ('autor@gmail.com', '1234', 'Autor', 'Apellido', 'Argentina', '2000-01-01
 insert into roles_usuarios (rol_id, usuario_id) values (1, 1);
 insert into roles_usuarios (rol_id, usuario_id) values (2, 2);
 
-insert into blogs (nombre, tema, visitas, fecha_creacion)
-values ('Blog 1', 'Tema 1', 0, '2024-02-29');
+insert into blogs (nombre, tema, fecha_creacion)
+values ('Blog 1', 'Tema 1', '2024-02-29');
 
 insert into blogs_usuarios (blog_id, usuario_id)
 values (1, 1);

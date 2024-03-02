@@ -1,5 +1,4 @@
 <?php
-
 error_reporting(0);
 require_once('../config/sesiones.php');
 require_once('../models/blogs.models.php');
@@ -24,10 +23,9 @@ switch ($_GET['op']) {
     case 'insertar':
             $nombre = $_POST['nombre'];
             $tema = $_POST['tema'];
-            $visitas = $_POST['visitas'];
-            $fechaCreacion = $_POST['fecha_creacion'];
+            $fechaCreacion = $_POST['date'];
             $datos = array();
-            $datos = $Blogs->insertar($nombre, $tema, $visitas, $fechaCreacion);
+            $datos = $Blogs->insertar($nombre, $tema, $fechaCreacion);
             echo json_encode($datos);
         break;
     // case 'actualizar':

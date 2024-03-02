@@ -23,15 +23,18 @@ class Blogs {
         $con->close();
     }
     //Procedimiento para insertar un usuario
-    public function insertar($nombre, $tema, $visitas, $fecha_creacion)
+    public function insertar($nombre, $tema, $fecha_creacion)
     {   
         $con = new ClaseConectar();
         $con = $con->ProcedimientoConectar();
-        $cadena = "insert into blogs (nombre, tema, visitas, fecha_creacion)
-        values ('$nombre', '$tema', $visitas, '$fecha_creacion');";
-        $datos = mysqli_query($con, $cadena);
+        $cadena = "insert into blogs (nombre, tema, fecha_creacion)
+        values ('$nombre', '$tema', '$fecha_creacion');";
+        if (mysqli_query($con, $cadena)) {
+            return 'ok';
+        } else {
+            return 'Error al insertar en la base de datos';
+        }
         $con->close();
-        return $datos;
     }
     //Procedimiento para actualizar un usuario
     // public function actualizar($UserID, $Nombre, $CorreoElectronico, $clave, $RolID){

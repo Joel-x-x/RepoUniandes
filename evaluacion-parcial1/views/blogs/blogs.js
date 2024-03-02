@@ -3,9 +3,22 @@ function init() {
       GuardarEditar(e);
     });
   }
+
+
   
   $().ready(() => {
     CargaLista();
+    // Obtener la fecha actual
+    let today = new Date();
+
+    // Restar un día
+    today.setDate(today.getDate() - 1);
+
+    // Formatear la fecha en el formato YYYY-MM-DD
+    let formattedDate = today.toISOString().split('T')[0];
+
+    // Establecer la fecha en el campo de entrada
+    document.getElementById('date').value = formattedDate;
   });
   
   var CargaLista = () => {
@@ -118,7 +131,7 @@ async function agregarAutorBlog(blogId, usuarioId) {
   var GuardarEditar = (e) => {
     e.preventDefault();
     var DatosFormularioUsuario = new FormData($("#form_usuarios")[0]);
-    var accion = "../../controllers/usuarios.controllers.php?op=insertar-autor";
+    var accion = "../../controllers/blogs.controllers.php?op=insertar";
   
     for (var pair of DatosFormularioUsuario.entries()) {
       console.log(pair[0] + ", " + pair[1]);
@@ -146,9 +159,6 @@ async function agregarAutorBlog(blogId, usuarioId) {
     });
   };
 
-
-
-
   // var autoresBlog = () => {
   //     var html;
   //     $.ajax({
@@ -175,12 +185,7 @@ async function agregarAutorBlog(blogId, usuarioId) {
   
   var LimpiarCajas = () => {
     (document.getElementById("nombre").value = ""),
-      (document.getElementById("apellido").value = ""),
-      (document.getElementById("email").value = ""),
-      (document.getElementById("clave").value = ""),
-      (document.getElementById("nacionalidad").value = ""),
-      (document.getElementById("nacimiento").value = ""),
-      (document.getElementById("genero").value = ""),
+      (document.getElementById("tema").value = ""),
       $("#ModalUsuarios").modal("hide");
   };
   init();
