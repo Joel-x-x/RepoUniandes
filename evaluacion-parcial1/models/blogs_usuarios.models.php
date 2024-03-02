@@ -8,7 +8,7 @@ class BlogUsuario
     {
         $con = new ClaseConectar();
         $con = $con->ProcedimientoConectar();
-        $cadena = "select u.* from blogs_usuarios bu join usuarios u on bu.usuario_id = u.id where bu.blog_id = 1";
+        $cadena = "select u.* from blogs_usuarios bu join usuarios u on bu.usuario_id = u.id where bu.blog_id = $blogId";
         $datos = mysqli_query($con, $cadena);
         return $datos;
         $con->close();

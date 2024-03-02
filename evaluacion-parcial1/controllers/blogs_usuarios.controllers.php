@@ -9,7 +9,7 @@ switch ($_GET["op"]) {
         $blogId = $_POST["blogId"];
         $datos = array();
         $datos = $BlogUsuario->todosUsuarios($blogId);
-        while ($row = mysqli_fetch_assoc($datos)) {
+        while($row = mysqli_fetch_assoc($datos)){
             $todos[] = $row;
         }
         echo json_encode($todos);

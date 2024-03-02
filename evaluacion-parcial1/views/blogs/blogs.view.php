@@ -4,7 +4,7 @@
 <!--onclick="sucursales(); roles()"-->
 <div class="card">
     <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#ModalUsuarios">Nuevo Blog</button>
-    <!-- <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#ModalAutores">Autores</button> -->
+    <!-- <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#ModalAutoresBlogs">Autores</button> -->
 
     <div id="prueba"></div>
 
@@ -51,6 +51,35 @@
                 </thead>
                 <tbody class="table-border-bottom-0" id="ListaAutores">
 
+                </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Autores Blogs-->
+<div class="modal" tabindex="-1" id="ModalAutoresBlogs">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="tituloModal"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Correo</th>
+                        <th>Nacionalidad</th>
+                        <th>Genero</th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0" id="ListaAutoresBlogs">
+                    
                 </tbody>
                 </table>
             </div>

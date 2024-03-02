@@ -23,9 +23,7 @@ function init() {
               <td>${blog.fecha_creacion}</td>
               <td>
               <button class='btn btn-primary' data-bs-toggle="modal" data-bs-target="#ModalAutores" onclick="CargaAutores(${blog.id})">Agregar</button>
-              <button class='btn btn-warning' onclick='autoresBlog(${
-                        blog.id
-                      })'>Listar</button>
+              <button class='btn btn-warning' data-bs-toggle="modal" data-bs-target="#ModalAutoresBlogs" onclick='CargaAutoresBlog(${blog.id})'>Listar</button>
               <td>
               <button class='btn btn-primary' click='uno(${
                         blog.id
@@ -60,28 +58,38 @@ function init() {
     );
   };
 
-// var agregarAutorBlog = (blogId, usuariosId) => {
-//     var accion = "../../controllers/blogs_usuarios.controllers.php?op=insertar";
-  
-//     $.ajax({
-//       url: accion,
-//       type: "post",
-//       data: { blogId: blogId, usuariosId: usuariosId }, // Convierte el objeto en una cadena JSON
-//       processData: false,
-//       contentType: false,
-//       cache: false,
-//       success: (respuesta) => {
-//         console.log(respuesta);
-//         // respuesta = JSON.parse(respuesta);
-//         // if (respuesta == "ok") {
-//         //   alert("Se guardo con éxito");
-//         //   $("#ModalAutores").modal("hide");
-//         // } else {
-//         //   alert("Error al guardar");
-//         // }
-//       },
-//     });
-// }
+    // Lista a los autores de un blog
+  var CargaAutoresBlog = (blogId) => {
+    return new Promise((resolve, reject) => {
+      var html;
+      $.ajax({
+        url: "../../controllers/blogs_usuarios.controllers.php?op=todos-usuarios",
+        type: "POST",
+        // contentType: "application/json", // Indica que el cuerpo de la solicitud es JSON
+        // data: JSON.stringify({ blogId: blogId }), // Convierte el objeto en una cadena JSON
+        data:{ blogId: blogId }, // Convierte el objeto en una cadena JSON
+        success: async function(ListaAutores) {
+          console.log(ListaAutores)
+          ListaAutores = JSON.parse(ListaAutores);
+          $.each(ListaAutores, (index, autor) => {
+            html += `<tr>
+            <td>${index + 1}</td>
+            <td>${autor.nombre}</td>
+            <td>${autor.apellido}</td>
+            <td>${autor.email}</td>
+            <td>${autor.nacionalidad}</td>
+            <td>${autor.genero == 1 ? "Hombre": "Mujer"}</td>`;
+          });
+          await $("#ListaAutoresBlogs").html(html);
+          resolve();
+        },
+        error: function(error) {
+          reject(error);
+        }
+      });
+    });
+  };
+
 
 async function agregarAutorBlog(blogId, usuarioId) {
 
@@ -138,29 +146,7 @@ async function agregarAutorBlog(blogId, usuarioId) {
     });
   };
 
-  // Lista a los autores de un blog
-  var autoresBlog = (blogId) => {
-    return new Promise((resolve, reject) => {
-      var html;
-      $.ajax({
-        url: "../../controllers/blogs_usuarios.controllers.php?op=todos-usuarios",
-        type: "POST",
-        contentType: "application/json", // Indica que el cuerpo de la solicitud es JSON
-        data: JSON.stringify({ blogId: blogId }), // Convierte el objeto en una cadena JSON
-        success: async function(ListaAutores) {
-          ListaAutores = JSON.parse(ListaAutores);
-          $.each(ListaAutores, (index, autor) => {
-            html += `<div>${autor.nombre}</div>`;
-          });
-          await $("#prueba").html(html);
-          resolve();
-        },
-        error: function(error) {
-          reject(error);
-        }
-      });
-    });
-  };
+
 
 
   // var autoresBlog = () => {
