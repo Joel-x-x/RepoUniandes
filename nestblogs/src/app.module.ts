@@ -10,10 +10,12 @@ import { RolesModule } from './roles/roles.module';
 import { BlogsController } from './blogs/blogs.controller';
 import { BlogsModule } from './blogs/blogs.module';
 import { BlogsService } from './blogs/blogs.service';
+import { BlogsUsuariosController } from './blogs-usuarios/blogs-usuarios.controller';
+import { BlogsUsuariosModule } from './blogs-usuarios/blogs-usuarios.module';
 
 @Module({
-  imports: [UsuariosModule, RolesModule, BlogsModule],
-  controllers: [AppController, UsuariosController, RolesController, BlogsController],
+  imports: [UsuariosModule, RolesModule, BlogsModule, BlogsUsuariosModule],
+  controllers: [AppController, UsuariosController, RolesController, BlogsController, BlogsUsuariosController],
   providers: [AppService, UsuariosService, RolesService, BlogsService],
 })
 export class AppModule {}
