@@ -1,12 +1,11 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ConfigModule} from '@nestjs/config';
-import { MongooseModule } from '@nestjs/mongoose'
-import { UsersController } from './users/users.controller';
+import { ConfigModule } from '@nestjs/config';
+import { MongooseModule } from '@nestjs/mongoose';
 import { UsersModule } from './users/users.module';
-import { UsersService } from './users/users.service';
-
+import { PassengerModule } from './passenger/passenger.module';
+import { VuelosModule } from './vuelos/vuelos.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -15,8 +14,10 @@ import { UsersService } from './users/users.service';
     }),
     MongooseModule.forRoot(process.env.uri_mongo),
     UsersModule,
+    PassengerModule,
+    VuelosModule,
   ],
-  controllers: [AppController, UsersController],
-  providers: [AppService, UsersService],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
