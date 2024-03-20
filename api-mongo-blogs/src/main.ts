@@ -9,8 +9,8 @@ async function bootstrap() {
   app.useGlobalInterceptors(new TimeOutInterceptor());
 
   const opciones = new DocumentBuilder()
-    .setTitle('Vuelos API')
-    .setDescription('Documentacion de Vuelos API')
+    .setTitle('Blogs API')
+    .setDescription('Documentacion de Blogs API')
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, opciones);
