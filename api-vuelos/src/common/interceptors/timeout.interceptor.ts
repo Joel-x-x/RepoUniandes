@@ -1,11 +1,11 @@
-import { CallHandler, ExecutionContext, NestInterceptor } from "@nestjs/common";
-import { Observable, timeout} from "rxjs";
+import { CallHandler, ExecutionContext, NestInterceptor } from '@nestjs/common';
+import { Observable, timeout } from 'rxjs';
 
 export class TimeOutInterceptor implements NestInterceptor {
   intercept(
     context: ExecutionContext,
-    next:CallHandler<any>
+    next: CallHandler<any>,
   ): Observable<any> | Promise<Observable<any>> {
-    return next.handle().pipe(timeout(1200));
+    return next.handle().pipe(timeout(120000));
   }
 }
