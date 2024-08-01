@@ -1,0 +1,5 @@
+<?php
+  $var = "";
+  echo $var;
+
+?>
