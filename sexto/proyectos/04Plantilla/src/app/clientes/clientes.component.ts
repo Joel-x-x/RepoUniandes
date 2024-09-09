@@ -14,7 +14,7 @@ import Swal from 'sweetalert2';
 export class ClientesComponent {
   listaclientes: ICliente[] = [];
   constructor(private clienteServicio: ClientesService) {}
-
+                  
   ngOnInit() {
     this.cargatabla();
   }
