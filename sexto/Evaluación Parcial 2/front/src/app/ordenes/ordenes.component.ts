@@ -17,6 +17,7 @@ export class OrdenesComponent implements OnInit {
   ngOnInit(): void {
     this.ordenService.todos().subscribe((data: IOrden[]) => {
       this.listaOrdenes = data;
+      console.log(this.listaOrdenes);
     });
   }
 }

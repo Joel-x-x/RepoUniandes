@@ -103,21 +103,13 @@ export const NavigationItems: NavigationItem[] = [
         icon: 'ant-design'
       }, //
       {
-        id: 'tabler',
-        title: 'Unidad de Medida',
+        id: 'reportes',
+        title: 'Reportes',
         type: 'item',
         classes: 'nav-item',
-        url: '/unidadmedida',
+        url: '/reportes',
         icon: 'ant-design'
-      }, //
-      {
-        id: 'tabler',
-        title: 'Productos',
-        type: 'item',
-        classes: 'nav-item',
-        url: '/productos',
-        icon: 'ant-design'
-      }
+      },
     ]
   },
 

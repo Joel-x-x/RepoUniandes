@@ -74,7 +74,7 @@
           <div class="row">
             <div class="col-12">
               <button type="button" class="btn btn-primary noimprimir" data-bs-toggle="modal"
-                data-bs-target="#addProductModal" (click)="detallesLista($event)">
+                data-bs-target="#addProductModal" (click)="openModal()">
                 Agregar menu
               </button>
               <table class="table table-bordered">
@@ -87,12 +87,15 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @for (item of detalles; track $index) {
+                  @for (item of listaDetalles; track $index) {
                   <tr>
                     <td>{{ item.nombre }}</td>
                     <td>{{ item.cantidad }}</td>
                     <td>{{ item.precio_unitario}}</td>
                     <td>{{ item.total}}</td>
+                    <td>
+                      <button (click)="eliminarDetalle(item.id)" type="button" class="btn btn-outline-danger">Eliminar</button>
+                    </td>
                   </tr>
                   }
                 </tbody>
@@ -101,7 +104,7 @@
                     <th colspan="4" class="text-end">Total a Pagar</th>
                     <th colspan="2">
                       <div class="form-group mb-3">
-                        <input type="text" class="form-control" ngValue="total" readonly [value]="totalapagar" />
+                        <input formControlName="total" type="text" class="form-control" ngValue="total" readonly [value]="totalapagar" />
                       </div>
                     </th>
                   </tr>
@@ -139,15 +142,15 @@
   </div>
 </div>
 
-<div class="modal modal-xl fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
+<div *ngIf="isModalVisible" class="modal modal-xl fade show" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true" style="display: block;">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="addProductModalLabel">Agregar Menu</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
       </div>
       <div class="modal-body">
-        <!-- Formulario para agregar producto " -->
+        <!-- Formulario para agregar producto -->
         <div class="col-sm-12">
           <app-card cardTitle="Lista de menus" blockClass="pc-component">
             <div class="col-12">
@@ -166,9 +169,9 @@
                       </tr>
                     </thead>
                     <tbody>
-                      @for (menu of listamenus; track $index) {
-                      <tr>
-                        <td>{{ $index + 1 }}</td>
+                      <!-- Iteración sobre listamenus en Angular -->
+                      <tr *ngFor="let menu of listamenus; let i = index">
+                        <td>{{ i + 1 }}</td>
                         <td>{{ menu.nombre }}</td>
                         <td>{{ menu.descripcion }}</td>
                         <td>{{ menu.precio }}</td>
@@ -177,7 +180,6 @@
                           <button (click)="seleccionarMenu(menu.id)" type="button" class="btn btn-outline-secondary">Seleccionar</button>
                         </td>
                       </tr>
-                      }
                     </tbody>
                   </table>
                 </div>
@@ -188,6 +190,8 @@
     </div>
   </div>
 </div>
+
+
 
 <!--
   IMPORTAR => FORMSMODULE  APP.MODULE.TS ||  NUEVOPROVEEDOR.COMPONENT.TS

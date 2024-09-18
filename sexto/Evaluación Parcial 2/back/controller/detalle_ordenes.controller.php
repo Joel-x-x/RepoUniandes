@@ -8,7 +8,7 @@ $detalle_ordenes = new DetalleOrdenes();
 
 switch ($_GET['op']) {
   case 'todos':
-    $orden_id = $_POST['order_id'];
+    $orden_id = $_POST['orden_id'];
     $datos = $detalle_ordenes->todos($orden_id);
     echo json_encode($datos);
     break;
@@ -43,6 +43,7 @@ switch ($_GET['op']) {
     $id = $_POST['id'];
     $datos = $detalle_ordenes->eliminar($id);
     echo json_encode($datos);
+    break;
   default:
     echo "Not Found";
     break;

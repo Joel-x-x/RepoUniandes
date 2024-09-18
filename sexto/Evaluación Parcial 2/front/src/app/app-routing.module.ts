@@ -82,31 +82,10 @@ const routes: Routes = [
         loadComponent: () => import('./ordenes/ordenes.component').then((m) => m.OrdenesComponent)
       },
       {
-        path: 'unidadmedida',
-        loadComponent: () => import('./unidadmedida/unidadmedida.component').then((m) => m.UnidadmedidaComponent),
-      },
-      {
-        path: 'nuevaunidadmedida',
-        loadComponent: () =>
-          import('./unidadmedida/nuevaunidadmedida/nuevaunidadmedida.component').then((m) => m.NuevaunidadmedidaComponent),
-      },
-      {
-        path: 'editarunidadmedida/:id',
-        loadComponent: () =>
-          import('./unidadmedida/nuevaunidadmedida/nuevaunidadmedida.component').then((m) => m.NuevaunidadmedidaComponent),
-      },
-      {
-        path: 'productos',
-        loadComponent: () => import('./productos/productos.component').then((m) => m.ProductosComponent),
-      },
-      {
-        path: 'nuevoproducto',
-        loadComponent: () => import('./productos/nuevoproducto/nuevoproducto.component').then((m) => m.NuevoproductoComponent),
-      },
-      {
-        path: 'editarproducto/:id',
-        loadComponent: () => import('./productos/nuevoproducto/nuevoproducto.component').then((m) => m.NuevoproductoComponent),
+        path: 'reportes',
+        loadComponent: () => import('./reportes/reportes.component').then((m) => m.ReportesComponent)
       }
+      
     ]
   },
   // {
