@@ -3,7 +3,7 @@
     <app-card cardTitle="Lista de Proveedores" blockClass="pc-component">
       <div class="col-md-12 col-xl-8">
         <h5 class="mb-3">
-          <a href="nuevafactura" class="btn btn-outline-dark">Nuevo Factura</a>
+          <a href="nuevaorden" class="btn btn-outline-dark">Nuevo orden</a>
         </h5>
         <div class="card tbl-card">
           <div class="table-responsive">
@@ -11,24 +11,25 @@
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Factura</th>
+                  <th>Orden</th>
                   <th>Cliente</th>
                   <th>Total</th>
+                  <th>Fecha</th>
                   <th></th>
                 </tr>
               </thead>
               <tbody>
-                @for (factura of listafacturas; track $index) {
+                @for (orden of listaOrdenes; track $index) {
                   <tr>
                     <td>{{ $index + 1 }}</td>
-                    <td>000{{ factura.idFactura }}</td>
-                    <td>{{ factura.Nombres }}</td>
-                    <td>{{ factura.total }}</td>
+                    <td>000{{ orden.id }}</td>
+                    <td>{{ orden.nombre }}</td>
+                    <td>{{ orden.total }}</td>
+                    <td>{{ orden.fecha }}</td>
                     <td>
-                      <button type="button" class="btn btn-outline-success" [routerLink]="['/editarcliente/', factura.idFactura]">
+                      <button type="button" class="btn btn-outline-success" [routerLink]="['/editarorden/', orden.id]">
                         Editar
                       </button>
-                      <button (click)="eliminar(factura.idFactura)" type="button" class="btn btn-outline-danger">Eliminar</button>
                     </td>
                   </tr>
                 }

@@ -36,11 +36,13 @@ switch ($_GET['op']) {
     $datos = $ordenes->actualizar($id, $cliente_id, $menu_id, $total, $fecha);
     echo json_encode($datos);
     break;
-  case 'actualizar-total': 
+  case 'actualizar-total':
     $id = $_POST['id'];
 
     $datos = $ordenes->actualizarTotal($id);
     echo json_encode($datos);
     break;
+  default:
+    echo "Not Found";
+    break;
 }
-?>

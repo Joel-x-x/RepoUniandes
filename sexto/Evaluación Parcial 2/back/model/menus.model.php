@@ -54,5 +54,19 @@ class Menus {
     $con->close();
     return $datos;
   }
+
+  public function eliminar($id) {
+    $con = new ClaseConectar();
+    $con = $con->ProcedimientoParaConectar();
+    $consulta = "DELETE FROM menus WHERE id = $id";
+
+    if(mysqli_query($con, $consulta)){
+      return true;
+    } else {
+      return false;
+    }
+
+    $con->close();
+  }
 }
 ?>

@@ -8,7 +8,8 @@ $detalle_ordenes = new DetalleOrdenes();
 
 switch ($_GET['op']) {
   case 'todos':
-    $datos = $detalle_ordenes->todos();
+    $orden_id = $_POST['order_id'];
+    $datos = $detalle_ordenes->todos($orden_id);
     echo json_encode($datos);
     break;
   case 'uno':
@@ -38,5 +39,11 @@ switch ($_GET['op']) {
     $datos = $detalle_ordenes->actualizar($id, $orden_id, $menu_id, $precio_unitario, $cantidad, $total);
     echo json_encode($datos);
     break;
+  case 'eliminar':
+    $id = $_POST['id'];
+    $datos = $detalle_ordenes->eliminar($id);
+    echo json_encode($datos);
+  default:
+    echo "Not Found";
+    break;
 }
-?>

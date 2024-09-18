@@ -33,7 +33,7 @@ class Clientes {
     return $cliente;
   }
 
-  public function insertar($nombre, $apellido, $telefono, $email) {
+  public function insertar($nombre, $apellido, $email, $telefono) {
     $con = new ClaseConectar();
     $con = $con->ProcedimientoParaConectar();
     $consulta = "INSERT INTO clientes (nombre, apellido, telefono, email) VALUES ('$nombre', '$apellido', '$telefono', '$email')";
@@ -44,7 +44,7 @@ class Clientes {
     return $datos;
   }
 
-  public function actualizar($id, $nombre, $apellido, $telefono, $email) {
+  public function actualizar($id, $nombre, $apellido, $email, $telefono) {
     $con = new ClaseConectar();
     $con = $con->ProcedimientoParaConectar();
     $consulta = "UPDATE clientes SET nombre = '$nombre', apellido = '$apellido', telefono = '$telefono', email = '$email' WHERE id = $id";
@@ -54,7 +54,22 @@ class Clientes {
     $con->close();
     return $datos;
   }
+  public function eliminar($id) {
+    $con = new ClaseConectar();
+    $con = $con->ProcedimientoParaConectar();
+    $consulta = "DELETE FROM clientes WHERE id = $id";
+  
+    if(mysqli_query($con, $consulta)) {
+      $cliente = true;
+    } else {
+      $cliente = false;
+    }
+  
+    $con->close();
+    return $cliente;
+  }
 }
+
   
 
 ?>

@@ -6,7 +6,7 @@ class Ordenes {
   public function todos() {
     $con = new ClaseConectar();
     $con = $con->ProcedimientoParaConectar();
-    $consulta = "SELECT * FROM ordenes";
+    $consulta = "SELECT * FROM ordenes o JOIN clientes c on c.id = o.cliente_id";
     $datos = mysqli_query($con, $consulta);
 
     if ($datos && mysqli_num_rows($datos) > 0) {
@@ -59,12 +59,30 @@ class Ordenes {
   public function actualizarTotal($id) {
     $con = new ClaseConectar();
     $con = $con->ProcedimientoParaConectar();
-    $consulta = "UPDATE ordenes set total = (select sum(total) from detalle_ordenes where orden_id = $id) where id = $id";
+    $consultaTotal = "SELECT SUM(total) AS total FROM detalle_ordenes WHERE orden_id = $id";
+    $total = mysqli_query($con, $consultaTotal);
+    $total = mysqli_fetch_assoc($total)['total'];
+    $total = (double) $total;
+    $consulta = "UPDATE ordenes set total = $total where id = $id";
 
     $datos = mysqli_query($con, $consulta);
     
     $con->close();
-    return $datos;
+    return $total;
+  }
+
+  public function eliminar($id) {
+    $con = new ClaseConectar();
+    $con = $con->ProcedimientoParaConectar();
+    $consulta = "DELETE FROM ordenes WHERE id = $id";
+
+    if(mysqli_query($con, $consulta)) {
+      return true;
+    } else {
+      return false;
+    }
+
+    $con->close();
   }
 }
 ?>

@@ -3,10 +3,10 @@ require_once '../config/config.php';
 
 class DetalleOrdenes {
 
-  public function todos() {
+  public function todos($orden_id) {
     $con = new ClaseConectar();
     $con = $con->ProcedimientoParaConectar();
-    $consulta = "SELECT * FROM detalle_ordenes";
+    $consulta = "SELECT * FROM detalle_ordenes where orden_id = $orden_id";
     $datos = mysqli_query($con, $consulta);
 
     if ($datos && mysqli_num_rows($datos) > 0) {
@@ -53,6 +53,20 @@ class DetalleOrdenes {
 
     $con->close();
     return $datos;
+  }
+
+  public function eliminar($id) {
+    $con = new ClaseConectar();
+    $con = $con->ProcedimientoParaConectar();
+    $consulta = "DELETE FROM detalle_ordenes WHERE id = $id";
+
+    if(mysqli_query($con, $consulta)) {
+      return true;      
+    } else {
+      return false;
+    }
+
+    $con->close();
   }
 }
 ?>

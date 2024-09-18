@@ -20,11 +20,11 @@ export class ClientesComponent {
   }
   cargatabla() {
     this.clienteServicio.todos().subscribe((data) => {
-      console.log(data);
       this.listaclientes = data;
     });
   }
-  eliminar(idClientes) {
+
+  eliminar(id) {
     Swal.fire({
       title: 'Clientes',
       text: 'Esta seguro que desea eliminar el cliente!',
@@ -35,10 +35,15 @@ export class ClientesComponent {
       confirmButtonText: 'Emliminar Cliente'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.clienteServicio.eliminar(idClientes).subscribe((data) => {
-          Swal.fire('Clientes', 'El cliente ha sido eliminado.', 'success');
-          this.cargatabla();
-        });
+        this.clienteServicio.eliminar(id).subscribe(data => {
+          if(data) {
+            Swal.fire('Clientes', 'El cliente ha sido eliminado.', 'success');
+            this.cargatabla();
+          } else {
+            Swal.fire('Clientes', 'El cliente no se pudo eliminar, porque se han creado ordenes a su nombre.', 'info');
+          }
+        }
+      );
       }
     });
   }

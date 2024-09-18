@@ -23,7 +23,7 @@ create table ordenes(
 id int primary key auto_increment,
 cliente_id int not null,
 menu_id int not null,
-total int not null,
+total double not null,
 fecha date not null,
 foreign key (cliente_id) references clientes(id),
 foreign key (menu_id) references menus(id)

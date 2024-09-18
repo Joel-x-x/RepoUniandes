@@ -36,5 +36,13 @@ switch ($_GET['op']) {
     $datos = $menus->actualizar($id, $nombre, $descripcion, $precio, $disponible);
     echo json_encode($datos);
     break;
+  case 'eliminar':
+    $id = $_POST['id'];
+    $datos = $menus->eliminar($id);
+    echo json_encode($datos);
+    break;
+  default:
+    echo "Not Found";
+    break;
 }
 ?>
