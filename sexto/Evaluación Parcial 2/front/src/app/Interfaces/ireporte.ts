@@ -1,7 +1,4 @@
-export interface IMenu {
-  id: number;
-  nombre: string;
-  descripcion: string;
-  precio: number;
-  disponible: number;
+export interface IReporte {
+  inicio: string;
+  fin: string;
 }

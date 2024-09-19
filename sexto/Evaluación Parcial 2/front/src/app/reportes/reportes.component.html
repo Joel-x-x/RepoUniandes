@@ -1,14 +1,14 @@
 <form [formGroup]="frm_Reporte" (ngSubmit)="grabar()">
   <div class="row">
-    <div class="form-group mb-3">
-      <label class="form-label" for="password">Fecha de emision</label>
-      <input type="date" class="form-control" formControlName="fecha" />
+    <div class="col-12 col-md-6 form-group mb-3">
+      <label class="form-label" for="fechaInicio">Fecha de inicio</label>
+      <input type="date" class="form-control" id="fechaInicio" formControlName="fechaInicio" />
     </div>
-    <div class="form-group mb-3">
-      <label class="form-label" for="password">Fecha de emision</label>
-      <input type="date" class="form-control" formControlName="fecha" />
+    <div class="col-12 col-md-6 form-group mb-3">
+      <label class="form-label" for="fechaFin">Fecha de fin</label>
+      <input type="date" class="form-control" id="fechaFin" formControlName="fechaFin" />
     </div>
-    <div class="d-grid mt-3">
+    <div class="col-12 d-grid mt-3">
       <button type="submit" class="btn btn-primary" [disabled]="frm_Reporte.invalid">Grabar</button>
     </div>
   </div>

@@ -11,7 +11,7 @@ class Reportes {
       $inicio = mysqli_real_escape_string($con, $inicio);
       $fin = mysqli_real_escape_string($con, $fin);
       
-      $consulta = "SELECT * FROM ordenes WHERE fecha BETWEEN '$inicio' AND '$fin'";
+      $consulta = "SELECT o.* FROM ordenes o WHERE o.fecha BETWEEN '$inicio' AND '$fin'";
       
       $datos = mysqli_query($con, $consulta);
       
