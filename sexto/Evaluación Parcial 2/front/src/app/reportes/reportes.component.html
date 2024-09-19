@@ -1,12 +1,12 @@
 <form [formGroup]="frm_Reporte" (ngSubmit)="grabar()">
   <div class="row">
     <div class="col-12 col-md-6 form-group mb-3">
-      <label class="form-label" for="fechaInicio">Fecha de inicio</label>
-      <input type="date" class="form-control" id="fechaInicio" formControlName="fechaInicio" />
+      <label class="form-label" for="inicio">Fecha de inicio</label>
+      <input type="date" class="form-control" id="inicio" formControlName="inicio" />
     </div>
     <div class="col-12 col-md-6 form-group mb-3">
-      <label class="form-label" for="fechaFin">Fecha de fin</label>
-      <input type="date" class="form-control" id="fechaFin" formControlName="fechaFin" />
+      <label class="form-label" for="fin">Fecha de fin</label>
+      <input type="date" class="form-control" id="fin" formControlName="fin" />
     </div>
     <div class="col-12 d-grid mt-3">
       <button type="submit" class="btn btn-primary" [disabled]="frm_Reporte.invalid">Grabar</button>
