@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Fifth</string>
+    <string name="cedulaLabel">Cédula</string>
+    <string name="nombreLabel"></string>
+    <string name="usuarioLabel">Usuario: </string>
+    <string name="claveLabel">Clave: </string>
+    <string name="ingresarButton">Ingresar: </string>
+    <string name="nameAplicacionLabel">AGENDA </string>
+
+</resources>
