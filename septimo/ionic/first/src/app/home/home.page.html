@@ -1,0 +1,25 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Blank
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-item>
+    <ion-input type="number" [(ngModel)]="txt_n1" placeholder="Ingresa un número"></ion-input>
+    <ion-input type="number" [(ngModel)]="txt_n2" placeholder="Ingresa número"></ion-input>
+  </ion-item>
+  <ion-item>
+      <ion-button color="primary" fill="outline" expand="block" (click)="sumar()">Sumar</ion-button>
+      <ion-button color="primary" fill="outline" expand="block" (click)="restar()">Restar</ion-button>
+      <ion-button color="primary" fill="outline" expand="block" (click)="multiplicar()">Multiplicar</ion-button>
+      <ion-button color="primary" fill="outline" expand="block" (click)="dividir()">Dividir</ion-button>
+  </ion-item>
+
+  <ion-item>
+    <ion-input type="text" [(ngModel)]="txt_r" placeholder="Resultado"></ion-input>
+  </ion-item>
+
+</ion-content>
