@@ -10,6 +10,7 @@ import { PaginadosPage } from '../paginados/paginados.page';
 })
 export class HomePage {
   isModalOpen = false;
+  opciones: string = "";
 
   constructor(private navCtrl: NavController,
     private router: Router, private modalCtrl: ModalController,
@@ -30,10 +31,10 @@ export class HomePage {
     });
     return await modal.present();
   }
-  async mostratToast() {
+  async mostratToast(mensaje: string, tiempo: number) {
     const toast = await this.toastCtrl.create({
-      message: "Hola Mundo!!!",
-      duration: 2000,
+      message: mensaje,
+      duration: tiempo,
       position: 'top'
     })
 
@@ -43,5 +44,9 @@ export class HomePage {
 
   setOpen(isOpen: boolean) {
     this.isModalOpen = isOpen;
+  }
+
+  verificarRadio() {
+    this.mostratToast(this.opciones, 2000);
   }
 }
