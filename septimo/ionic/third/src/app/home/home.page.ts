@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { ModalController, NavController } from '@ionic/angular';
+import { ModalController, NavController, ToastController } from '@ionic/angular';
 import { PaginadosPage } from '../paginados/paginados.page';
 @Component({
   selector: 'app-home',
@@ -12,7 +12,8 @@ export class HomePage {
   isModalOpen = false;
 
   constructor(private navCtrl: NavController,
-    private router: Router, private modalCtrl: ModalController
+    private router: Router, private modalCtrl: ModalController,
+    private toastCtrl: ToastController
   ) {}
 
   irp2n() {
@@ -28,6 +29,16 @@ export class HomePage {
       component: PaginadosPage
     });
     return await modal.present();
+  }
+  async mostratToast() {
+    const toast = await this.toastCtrl.create({
+      message: "Hola Mundo!!!",
+      duration: 2000,
+      position: 'top'
+    })
+
+    await toast.present()
+
   }
 
   setOpen(isOpen: boolean) {
