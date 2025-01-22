@@ -38,8 +38,8 @@
         <ion-item>
           <ion-button id="open-loading" expand="block" color="success" (click)="login()">Iniciar Sesión</ion-button>
         </ion-item>
-        <!-- Spinner loading -->
-        <ion-loading trigger="open-loading" message="Loading..." [duration]="3000" spinner="circles"></ion-loading>
+        <!-- Spinner loading
+        <ion-loading trigger="open-loading" message="Loading..." [duration]="3000" spinner="circles"></ion-loading> -->
 
         <!-- Table of others buttons -->
          <ion-item>
@@ -49,7 +49,7 @@
                 <span class="font-mono text-sm text-center text-blue-800" (click)="crear()">Crear Cuenta</span>
               </td>
               <td>
-                <span class="font-mono text-sm text-center text-blue-800" (click)="recuperar">Recuperar Clave</span>
+                <span class="font-mono text-sm text-center text-blue-800" (click)="recuperar()">Recuperar Clave</span>
               </td>
             </tr>
           </table>

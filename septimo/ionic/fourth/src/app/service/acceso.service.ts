@@ -17,7 +17,7 @@ server: string = environment.url;
       headers: head
     }
 
-    return this.http.post(this.server, JSON.stringify(body), options)
+    return this.http.post(this.server + "/agenda.php", JSON.stringify(body), options)
   }
 
   async showToast(mensaje: string, tiempo: number) {

@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  url: 'http://localhost/'
+  url: 'http://localhost/RepoUniandes/septimo/agenda25'
 };

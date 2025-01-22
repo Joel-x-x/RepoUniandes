@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-rclave',
   templateUrl: './rclave.page.html',
   styleUrls: ['./rclave.page.scss'],
+  standalone: false,
 })
 export class RclavePage implements OnInit {
 

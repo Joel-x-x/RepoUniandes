@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LoadingController } from '@ionic/angular';
+import { AccesoService } from '../service/acceso.service';
 
 @Component({
   selector: 'app-home',
@@ -11,21 +11,36 @@ export class HomePage {
   txt_usuario: string = "";
   txt_clave: string = "";
 
-  constructor(private loadingCtrl: LoadingController) {}
+  constructor(private servicio: AccesoService) {}
 
-login() {}
+login() {
+  let datos = {
+    accion: 'login',
+    usuario: this.txt_usuario,
+    clave: this.txt_clave
+  }
+
+  this.servicio.postData(datos).subscribe((res:any) => {
+    console.log(res);
+    if(res.estado) {
+      this.servicio.createSession('idpersona', res.id);
+    } else {
+      this.servicio.showToast("No encontro al persona", 3000);
+    }
+  })
+}
 
 recuperar() {}
 
 crear() {}
 
-async showLoading() {
-  const loading = await this.loadingCtrl.create({
-    message: 'Dismissing after 3 seconds...',
-    duration: 3000,
-  });
+// async showLoading() {
+//   const loading = await this.loadingCtrl.create({
+//     message: 'Dismissing after 3 seconds...',
+//     duration: 3000,
+//   });
 
-  loading.present();
-}
+//   loading.present();
+// }
 
 }
