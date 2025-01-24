@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
+import { AccesoService } from '../service/acceso.service';
 
 @Component({
   selector: 'app-menu',
@@ -7,8 +9,13 @@ import { Component, OnInit } from '@angular/core';
   standalone: false
 })
 export class MenuPage implements OnInit {
+  nombre: string = "";
 
-  constructor() { }
+  constructor(private navController: NavController, private servicio: AccesoService) {
+    this.servicio.getSession('persona').then((res: any) => {
+      this.nombre = res;
+    });
+   }
 
   ngOnInit() {
   }
