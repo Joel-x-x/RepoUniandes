@@ -29,7 +29,7 @@ export class MenuPage implements OnInit {
   listarContactos() {
     let datos = {
       "accion": "listar-contactos",
-      "codigo": this.cod_persona,
+      "codigo": this.cod_persona
     }
 
     this.servicio.postData(datos).subscribe((res: any) => {
@@ -39,6 +39,20 @@ export class MenuPage implements OnInit {
         this.servicio.showToast(res.mensaje, 2000);
       }
     })
+  }
+
+  nuevo() {
+    this.navController.navigateForward(['/contacto']);
+  }
+
+  ireliminar(cod_contacto: string) {
+    this.navController.navigateForward(['/econtacto']);
+    this.servicio.createSession('cod_contacto', cod_contacto);
+  }
+
+  ireditar(cod_contacto: string) {
+    this.navController.navigateForward(['/acontacto']);
+    this.servicio.createSession('cod_contacto', cod_contacto);
   }
 
 }

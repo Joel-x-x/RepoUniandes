@@ -23,6 +23,18 @@ const routes: Routes = [
     path: 'cuenta',
     loadChildren: () => import('./cuenta/cuenta.module').then( m => m.CuentaPageModule)
   },
+  {
+    path: 'contacto',
+    loadChildren: () => import('./contacto/contacto.module').then( m => m.ContactoPageModule)
+  },
+  {
+    path: 'acontacto',
+    loadChildren: () => import('./acontacto/acontacto.module').then( m => m.AcontactoPageModule)
+  },
+  {
+    path: 'econtacto',
+    loadChildren: () => import('./econtacto/econtacto.module').then( m => m.EcontactoPageModule)
+  },
 ];
 
 @NgModule({
