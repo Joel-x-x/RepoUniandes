@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\laragon\\www\\RepoUniandes\\septimo\\netcore\\first\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{24DCC302-FD58-4BE0-8562-A5140E7F6066}|first\\first.csproj|c:\\laragon\\www\\repouniandes\\septimo\\netcore\\first\\first\\first.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
-      "RelativeMoniker": "D:0:0:{24DCC302-FD58-4BE0-8562-A5140E7F6066}|first\\first.csproj|solutionrelative:first\\first.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{24DCC302-FD58-4BE0-8562-A5140E7F6066}|first\\first.csproj|c:\\laragon\\www\\repouniandes\\septimo\\netcore\\first\\first\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{24DCC302-FD58-4BE0-8562-A5140E7F6066}|first\\first.csproj|solutionrelative:first\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24DCC302-FD58-4BE0-8562-A5140E7F6066}|first\\first.csproj|c:\\laragon\\www\\repouniandes\\septimo\\netcore\\first\\first\\first.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{24DCC302-FD58-4BE0-8562-A5140E7F6066}|first\\first.csproj|solutionrelative:first\\first.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{24DCC302-FD58-4BE0-8562-A5140E7F6066}|first\\first.csproj|c:\\laragon\\www\\repouniandes\\septimo\\netcore\\first\\first\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -22,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,7 +38,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "first.http",
               "DocumentMoniker": "C:\\laragon\\www\\RepoUniandes\\septimo\\netcore\\first\\first\\first.http",
               "RelativeDocumentMoniker": "first\\first.http",
@@ -59,18 +59,17 @@
               "RelativeToolTip": "first\\WeatherForecast.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-21T19:10:36.131Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-21T19:10:36.131Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\laragon\\www\\RepoUniandes\\septimo\\netcore\\first\\first\\Program.cs",
               "RelativeDocumentMoniker": "first\\Program.cs",
-              "ToolTip": "C:\\laragon\\www\\RepoUniandes\\septimo\\netcore\\first\\first\\Program.cs",
-              "RelativeToolTip": "first\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAhAAAAAAAAAA==",
+              "ToolTip": "C:\\laragon\\www\\RepoUniandes\\septimo\\netcore\\first\\first\\Program.cs*",
+              "RelativeToolTip": "first\\Program.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-21T19:10:22.712Z",
               "EditorCaption": ""

@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="text-center">
+      To Do
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">To Do</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-list *ngIf="tareas && tareas.length > 0">
+    <ion-item *ngFor="let tarea of tareas" (click)="editarTarea(tarea)" (contextmenu)="eliminarTarea(tarea, $event)">
+      <div class="flex items-center justify-between w-full">
+        <div>
+          <span class="flex-5">{{ tarea.titulo }}</span>
+        </div>
+        <div>
+          <ion-checkbox [(ngModel)]="tarea.estado" [disabled]="true"></ion-checkbox>
+        </div>
+      </div>
+    </ion-item>
+  </ion-list>
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button color="secondary" (click)="nuevaTarea()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

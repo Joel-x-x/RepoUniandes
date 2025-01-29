@@ -8,7 +8,19 @@
   </ion-header>
 
   <ion-content [fullscreen]="true">
-    <ion-item>
-      <ion-label>Bienvenido: {{ nombre }}</ion-label>
-    </ion-item>
+    <ion-list>
+      <ion-item-sliding *ngFor="let fila of contactos">
+      <ion-item>
+        <ion-avatar>
+          <img src="assets/imgs/person.png" alt="">
+        </ion-avatar>
+        <ion-label>
+          <b>Nombre:</b>{{ fila.nombre }}<br>
+          <b>Telf:</b>{{ fila.telefono }}<br>
+        </ion-label>
+      </ion-item>
+      <ion-item-option color="warning">Editar</ion-item-option>
+      <ion-item-option color="warning">Eliminar</ion-item-option>
+    </ion-item-sliding>
+    </ion-list>
   </ion-content>

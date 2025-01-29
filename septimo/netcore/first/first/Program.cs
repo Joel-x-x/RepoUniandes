@@ -22,4 +22,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+// How to create a simple endpoint
+//app.MapGet("/", () => "Estoy arrecho.");
+
 app.Run();
