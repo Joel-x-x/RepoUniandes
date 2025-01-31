@@ -35,6 +35,10 @@ const routes: Routes = [
     path: 'econtacto',
     loadChildren: () => import('./econtacto/econtacto.module').then( m => m.EcontactoPageModule)
   },
+  {
+    path: 'perfil',
+    loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule)
+  },
 ];
 
 @NgModule({

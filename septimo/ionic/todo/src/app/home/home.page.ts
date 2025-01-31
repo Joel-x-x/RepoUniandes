@@ -3,6 +3,7 @@ import { UtilidadesService } from '../service/utilidades.service';
 import { Router } from '@angular/router';
 import { PreferencesService } from '../service/preferences.service';
 import { Tarea } from '../interface/tarea';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -12,8 +13,9 @@ import { Tarea } from '../interface/tarea';
 })
 export class HomePage implements AfterContentInit, OnInit {
   tareas: Tarea[] = [];
+  buscarInput: string = "";
 
-  constructor(private utilidadesService: UtilidadesService, private router: Router, private preferencesService: PreferencesService) {}
+  constructor(private utilidadesService: UtilidadesService, private router: Router, private preferencesService: PreferencesService, private navController: NavController) {}
 
   ngOnInit(): void {
     this.listar();
@@ -21,6 +23,15 @@ export class HomePage implements AfterContentInit, OnInit {
 
   ngAfterContentInit(): void {
     this.listar();
+  }
+
+  buscar() {
+    if(this.buscarInput === "") {
+      this.listar();
+      return;
+    }
+
+    this.tareas = this.tareas.filter(t => t.titulo.toLowerCase().includes(this.buscarInput.toLowerCase()));
   }
 
   listar() {
@@ -43,11 +54,15 @@ export class HomePage implements AfterContentInit, OnInit {
     this.router.navigate(['/editar', tarea.id]);
   }
 
-  eliminarTarea(tarea: Tarea, event: MouseEvent) {
-    event.preventDefault();
+  detalle(tarea: Tarea) {
+    this.navController.navigateForward(['/detalle', tarea.id]);
+  }
+
+  eliminarTarea(tarea: Tarea) {
 
     this.preferencesService.eliminarTarea(tarea.id).then(
       () => {
+        this.utilidadesService.mostrarLoading();
         this.utilidadesService.toast('Tarea eliminada', 2000);
         this.tareas = this.tareas.filter((t) => t.id !== tarea.id);
       },

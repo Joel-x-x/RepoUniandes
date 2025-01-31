@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AccesoService } from '../service/acceso.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-acontacto',
   templateUrl: './acontacto.page.html',
   styleUrls: ['./acontacto.page.scss'],
+  standalone: false,
 })
 export class AcontactoPage implements OnInit {
   contacto: any = [];
@@ -15,22 +17,22 @@ export class AcontactoPage implements OnInit {
   txt_correo: string = "";
   mensaje: string = "";
 
-  constructor(private servicio: AccesoService) {
-    this.servicio.getSession("idpersona").then((res:any) => {
+  constructor(private servicio: AccesoService, private navController: NavController) {
+    this.servicio.getSession("cod_contacto").then((res: any) => {
       this.cod_contacto = res;
       this.cargarDatos();
     });
-   }
+  }
 
-   cargarDatos() {
+  cargarDatos() {
     let datos = {
       "accion": "dcontacto",
-      "cod_contacto": this.cod_contacto,
+      "codigo": this.cod_contacto,
     }
 
-    this.servicio.postData(datos).subscribe((res:any) => {
-      if(res.estado) {
-        this.contacto = res.data;
+    this.servicio.postData(datos).subscribe((res: any) => {
+      if (res.estado) {
+        this.contacto = res.datos;
         this.txt_nombre = this.contacto.nombre;
         this.txt_apellido = this.contacto.apellido;
         this.txt_telefono = this.contacto.telefono;
@@ -39,9 +41,35 @@ export class AcontactoPage implements OnInit {
         this.servicio.showToast(res.mensaje, 3000);
       }
     });
-   }
+  }
 
   ngOnInit() {
+  }
+
+  verificarnumero() { }
+
+  guardar() {
+    let datos = {
+      "accion": "acontacto",
+      "codigo": this.cod_contacto,
+      "nombre": this.txt_nombre,
+      "apellido": this.txt_apellido,
+      "telefono": this.txt_telefono,
+      "correo": this.txt_correo
+    }
+
+    this.servicio.postData(datos).subscribe((res: any) => {
+      if (res.estado) {
+        this.servicio.showToast(res.mensaje, 3000);
+        this.navController.navigateRoot(['/menu']);
+      } else {
+        this.servicio.showToast(res.mensaje, 3000);
+      }
+    });
+  }
+
+  cancelar() {
+    this.navController.back();
   }
 
 }

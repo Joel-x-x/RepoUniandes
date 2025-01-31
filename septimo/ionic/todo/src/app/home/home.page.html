@@ -13,16 +13,19 @@
     </ion-toolbar>
   </ion-header>
 
+  <ion-searchbar (input)="buscar()" [(ngModel)]="buscarInput" placeholder="Buscar entre tareas"></ion-searchbar>
   <ion-list *ngIf="tareas && tareas.length > 0">
-    <ion-item *ngFor="let tarea of tareas" (click)="editarTarea(tarea)" (contextmenu)="eliminarTarea(tarea, $event)">
-      <div class="flex items-center justify-between w-full">
+    <ion-item *ngFor="let tarea of tareas">
+      <div (click)="detalle(tarea)" class="flex items-center justify-between w-full">
         <div>
           <span class="flex-5">{{ tarea.titulo }}</span>
         </div>
-        <div>
-          <ion-checkbox [(ngModel)]="tarea.estado" [disabled]="true"></ion-checkbox>
+        <div class="mr-3">
+          <ion-checkbox [(ngModel)]="tarea.estado" [disabled]="true">Completada</ion-checkbox>
         </div>
       </div>
+      <ion-button (click)="editarTarea(tarea)">Editar</ion-button>
+      <ion-button (click)="eliminarTarea(tarea)">Eliminar</ion-button>
     </ion-item>
   </ion-list>
   <ion-fab horizontal="end" vertical="bottom" slot="fixed">

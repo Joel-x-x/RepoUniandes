@@ -64,6 +64,7 @@ export class CuentaPage implements OnInit {
       cedula: this.txt_cedula
     }
     this.servicio.postData(datos).subscribe((res:any) => {
+      console.log(res);
       if(res.estado) {
         this.txt_cedula = "";
         this.servicio.showToast(res.mensaje, 3000);

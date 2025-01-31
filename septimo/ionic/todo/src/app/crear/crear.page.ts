@@ -39,7 +39,7 @@ export class CrearPage implements OnInit {
     this.titulo = '';
     this.descripcion = '';
     this.router.navigate(['/home']);
-
+    this.utilidadesService.mostrarLoading();
   }
 
 }

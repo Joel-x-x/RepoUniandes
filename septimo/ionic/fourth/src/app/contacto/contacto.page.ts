@@ -26,7 +26,17 @@ export class ContactoPage implements OnInit {
   }
 
   cancelar() {}
-  verificarnumero() {}
+
+  verificarnumero() {
+    let datos = {
+      "accion": "vtelefono",
+      "cod_persona": this.cod_persona,
+      "telefono": this.txt_telefono
+    }
+    this.servicio.postData(datos).subscribe((res:any) => {
+      this.mensaje = res.mensaje;
+    })
+  }
 
   guardar() {
     let datos = {
@@ -35,6 +45,7 @@ export class ContactoPage implements OnInit {
       "nombre": this.txt_nombre,
       "apellido": this.txt_apellido,
       "telefono": this.txt_telefono,
+      "correo": this.txt_correo
     }
     this.servicio.postData(datos).subscribe((res:any) => {
       if(res.estado) {
@@ -45,6 +56,7 @@ export class ContactoPage implements OnInit {
       }
     });
   }
+
 
 
 

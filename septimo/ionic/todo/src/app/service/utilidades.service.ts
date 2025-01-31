@@ -1,12 +1,24 @@
 import { Injectable } from '@angular/core';
-import { ToastController } from '@ionic/angular';
+import { LoadingController, ToastController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtilidadesService {
 
-  constructor() { }
+  constructor(private loadingController: LoadingController) { }
+
+  async mostrarLoading() {
+    const loading = await this.loadingController.create({
+      message: 'Cargando...'
+    });
+    await loading.present();
+
+    setTimeout(() => {
+      loading.dismiss();
+      window.location.reload();
+    }, 1000);
+  }
 
   toast(mensaje: string, tiempo: number) {
     new ToastController().create({

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UtilidadesService } from '../service/utilidades.service';
 import { PreferencesService } from '../service/preferences.service';
 import { Tarea } from '../interface/tarea';
@@ -16,7 +16,7 @@ export class EditarPage implements OnInit {
   descripcion: string = '';
   estado: boolean = false;
 
-  constructor(private route: ActivatedRoute, private utilidadesService: UtilidadesService, private preferencesService: PreferencesService) { }
+  constructor(private route: ActivatedRoute, private utilidadesService: UtilidadesService, private preferencesService: PreferencesService, private router: Router) { }
 
   async ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id')!;
@@ -34,7 +34,22 @@ export class EditarPage implements OnInit {
   }
 
   actualizar() {
+    if (this.titulo.trim() === '') {
+      this.utilidadesService.toast('El título es obligatorio', 2000);
+      return;
+    }
 
+    const tarea: Tarea = {
+      id: this.id,
+      titulo: this.titulo,
+      descripcion: this.descripcion,
+      estado: this.estado
+    };
+
+    this.preferencesService.actualizarTarea(tarea);
+    this.utilidadesService.toast('Tarea actualizada', 2000);
+    this.router.navigate(['/home']);
+    this.utilidadesService.mostrarLoading();
   }
 
 }

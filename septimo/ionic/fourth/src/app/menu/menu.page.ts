@@ -55,4 +55,13 @@ export class MenuPage implements OnInit {
     this.servicio.createSession('cod_contacto', cod_contacto);
   }
 
+  perfil() {
+    this.navController.navigateForward(['/perfil']);
+  }
+
+  cerrarSesion() {
+    this.servicio.closeSession();
+    this.navController.navigateRoot(['/home']);
+  }
+
 }
