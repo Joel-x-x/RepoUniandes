@@ -1,0 +1,46 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Proyecto</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{ esEdicion ?  'Acualizar Proyecto' : 'Crear Proyecto' }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input type="text" [(ngModel)]="nombre"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Descripción</ion-label>
+        <ion-textarea [(ngModel)]="descripcion"></ion-textarea>
+      </ion-item>
+      <ion-button color="secondary" expand="block" (click)="esEdicion ?actualizar() : crear()">{{ esEdicion ? 'Actualizar' : 'Crear' }}</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-list *ngIf="tareas && tareas.length > 0">
+    <ion-item class="cursor-pointer" *ngFor="let tarea of tareas">
+      <div (click)="detalleTarea(tarea)" class="flex items-center justify-between w-full">
+        <div>
+          <span class="flex-5">{{ tarea.nombre }}</span>
+        </div>
+      </div>
+      <ion-badge class="bg-gray-600 text-gray-300" slot="start">{{ tarea.estado }}</ion-badge>
+      <ion-button color="danger" (click)="eliminarTarea(tarea)">
+        <ion-icon name="trash-outline"></ion-icon> Eliminar
+      </ion-button>
+    </ion-item>
+  </ion-list>
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button color="secondary" (click)="nuevaTarea()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

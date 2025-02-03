@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="back()" defaultHref=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Tarea</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{ esEdicion ?  'Acualizar tarea' : 'Crear tarea' }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input type="text" [(ngModel)]="nombre"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Descripción</ion-label>
+        <ion-textarea [(ngModel)]="descripcion"></ion-textarea>
+      </ion-item>
+      <ion-label>Seleccionar estado</ion-label>
+      <ion-select [(ngModel)]="estado">
+        <ion-select-option *ngFor="let estado of estados" [value]="estado">
+          {{ capitalize(estado) }}
+        </ion-select-option>
+      </ion-select>
+      <ion-button color="secondary" expand="block" (click)="esEdicion ?actualizar() : crear()">{{ esEdicion ? 'Actualizar' : 'Crear' }}</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

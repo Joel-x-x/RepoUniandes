@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="text-center">
+      Proyectos
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Proyectos</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-searchbar (input)="buscar()" [(ngModel)]="buscarInput" placeholder="Buscar proyectos"></ion-searchbar>
+  <ion-grid>
+    <!-- Row -->
+    <ion-row>
+      <ion-col *ngFor="let proyecto of proyectos" size="12" size-md="4" size-lg="3">
+        <ion-card class="cursor-pointer">
+          <ion-card-header (click)="detalle(proyecto)">
+            <ion-card-title>{{ proyecto.nombre }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content (click)="detalle(proyecto)">
+            {{ proyecto.descripcion }}
+          </ion-card-content>
+          <ion-button class="pl-4" color="danger" (click)="eliminar(proyecto)">
+            <ion-icon name="trash-outline"></ion-icon> Eliminar
+          </ion-button>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button color="secondary" (click)="nuevo()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
