@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { IonItemSliding, NavController } from '@ionic/angular';
 import { AccesoService } from '../service/acceso.service';
 
 @Component({
@@ -12,6 +12,7 @@ export class MenuPage implements OnInit {
   nombre: string = "";
   contactos: any = [];
   cod_persona: string = "";
+  @ViewChild('firstSliding') firstSliding!: IonItemSliding;
 
   constructor(private navController: NavController, private servicio: AccesoService) {
     this.servicio.getSession('persona').then((res: any) => {
@@ -24,6 +25,12 @@ export class MenuPage implements OnInit {
    }
 
   ngOnInit() {
+  }
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.firstSliding.open('end');
+    }, 1000);
   }
 
   listarContactos() {

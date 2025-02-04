@@ -6,20 +6,18 @@
 
 <ion-content [fullscreen]="true">
   <ion-item>
-    <ion-label position="floating">¿Qué tipo de animal fue tu primera mascota?</ion-label>
-    <ion-input type="text" [(ngModel)]="txt_pregunta1"></ion-input>
+    <ion-input placeholder="¿Qué tipo de animal fue tu primera mascota?" type="text" [(ngModel)]="txt_pregunta1"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label position="floating">¿Cuál es tu plato favorito?</ion-label>
-    <ion-input type="text" [(ngModel)]="txt_pregunta2"></ion-input>
+    <ion-input placeholder="¿Cuál es tu plato favorito?" type="text" [(ngModel)]="txt_pregunta2"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-button color="success" expand="block" (click)="confirmar()">Confirmar</ion-button>
-    <ion-button color="secondary" expand="block" (click)="cancelar()">Cancelar</ion-button>
+    <ion-button color="warning" expand="block" (click)="confirmar()">Confirmar</ion-button>
+    <ion-button color="warning" expand="block" (click)="cancelar()">Cancelar</ion-button>
   </ion-item>
   <ion-item *ngIf="confirmado">
     <ion-label position="floating">Nueva contraseña</ion-label>
     <ion-input type="text" [(ngModel)]="clave"></ion-input>
-    <ion-button (click)="cambiarClave()" color="secondary">Confirmar</ion-button>
+    <ion-button (click)="cambiarClave()" color="warning">Confirmar</ion-button>
   </ion-item>
 </ion-content>

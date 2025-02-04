@@ -6,25 +6,20 @@
 
 <ion-content [fullscreen]="true">
   <ion-item>
-    <ion-label position="floating">Nombre</ion-label>
-    <ion-input type="text" [(ngModel)]="txt_nombre"></ion-input>
+    <ion-input disabled placeholder="Nombre" type="text" [(ngModel)]="txt_nombre"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label position="floating">Apellido</ion-label>
-    <ion-input type="text" [(ngModel)]="txt_apellido"></ion-input>
+    <ion-input disabled placeholder="Apellido" type="text" [(ngModel)]="txt_apellido"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label position="floating">Telefono</ion-label>
-    <ion-input [(ngModel)]="txt_telefono" type="text"></ion-input>
-    <!-- <ion-label position=""color="danger">{{mensaje}}</ion-label> -->
+    <ion-input disabled placeholder="Teléfono" [(ngModel)]="txt_telefono" type="text"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label position="floating">Correo</ion-label>
-    <ion-input [(ngModel)]="txt_correo" type="E-mail"></ion-input>
+    <ion-input disabled placeholder="Correo" [(ngModel)]="txt_correo" type="E-mail"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-button id="mostrar-alerta" color="success">Eliminar</ion-button>
-    <ion-button color="success" (click)="cancelar()">Cancelar</ion-button>
+    <ion-button id="mostrar-alerta" color="warning">Eliminar</ion-button>
+    <ion-button color="warning" (click)="cancelar()">Cancelar</ion-button>
   </ion-item>
 
   <ion-alert

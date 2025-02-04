@@ -25,7 +25,9 @@ export class ContactoPage implements OnInit {
   ngOnInit() {
   }
 
-  cancelar() {}
+  cancelar() {
+    this.navCtrl.back();
+  }
 
   verificarnumero() {
     let datos = {
